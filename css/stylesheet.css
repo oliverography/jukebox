@@ -1,0 +1,77 @@
+html { 
+  background: url(../images/nebula.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#player {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  -ms-transform: translate(-50%, -50%); /* IE 9 */
+  -webkit-transform: translate(-50%, -50%); /* Safari */
+  transform: translate(-50%, -50%);
+}
+
+/*BUTTON DEFAULTS*/
+.icon {
+  width: 50px;
+  height: 50px;
+  background-size: 50px 50px;
+  margin: 0 10px 0 10px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+#previous {
+  background-image: url(../images/player-wht/rewind.svg);
+}
+
+/*#stop {
+  background-image: url(../images/player-wht/stop.svg);
+}*/
+
+#pause {
+  background-image: url(../images/player-wht/pause.svg);
+  display: none;
+}
+
+#play {
+  background-image: url(../images/player-wht/play.svg);
+}
+
+#next {
+  background-image: url(../images/player-wht/next.svg);
+}
+
+#shuffle {
+  background-image: url(../images/player-wht/shuffle.svg);
+}
+
+/*BUTTON HOVER/ACTIVE */
+#previous:hover, #previous:active {
+  background-image: url(../images/player-green/rewind.svg);
+}
+
+/*#stop:hover, #stop:active {
+  background-image: url(../images/player-green/stop.svg);
+}*/
+
+#pause:hover, #pause:active {
+  background-image: url(../images/player-green/pause.svg);
+}
+
+#play:hover, #play:active {
+  background-image: url(../images/player-green/play.svg);
+}
+
+#next:hover, #next:active {
+  background-image: url(../images/player-green/next.svg);
+}
+
+#shuffle:hover, #shuffle:active {
+  background-image: url(../images/player-green/shuffle.svg);
+}
+
