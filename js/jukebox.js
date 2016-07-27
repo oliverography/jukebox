@@ -127,7 +127,6 @@ var jukebox = new Jukebox()
 // SONG OBJECTS
 // ============================================================
 
-var song1 = new Song("Pizzicato Five", "Overture", "audio/01 Overture.mp3")
 var bearbot1 = new Song("Bearbot", "Easily, Busily", "audio/Evocation/01 Easily, Busily.mp3")
 var bearbot2 = new Song("Bearbot", "Kick, Push, Drugs", "audio/Evocation/02 Kick, Push, Drugs.mp3")
 var bearbot3 = new Song("Bearbot", "Intergalactic Inc.", "audio/Evocation/03 Intergalactic Inc..mp3")
@@ -139,11 +138,14 @@ var bearbot8 = new Song("Bearbot", "Nts Nts Nts (Part I)", "audio/Evocation/08 N
 var bearbot9 = new Song("Bearbot", "Nts Nts Nts (Part 2)", "audio/Evocation/09 Nts Nts Nts (Part 2).mp3")
 var bearbot10 = new Song("Bearbot", "We Are the Creator", "audio/Evocation/10 We Are the Creator.mp3")
 
+// for testing
+var song1 = new Song("Pizzicato Five", "Overture", "audio/01 Overture.mp3")
+
 // ============================================================
 // LOAD SONGS INTO JUKEBOX
 // ============================================================
 
-jukebox.loadSongs(song1, bearbot1, bearbot2, bearbot3, bearbot4, bearbot5, bearbot6, bearbot7, bearbot8, bearbot9, bearbot10)
+jukebox.loadSongs(bearbot1, bearbot2, bearbot3, bearbot4, bearbot5, bearbot6, bearbot7, bearbot8, bearbot9, bearbot10)
 
 // ============================================================
 // EVENTS
