@@ -1,67 +1,59 @@
-html { 
-/*  background: url(../images/nebula.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;*/
-}
-
 video {
-  z-index: -1;
+  height: auto;
+  left: 50%;
+  min-height: 100vh;
+  min-width: 100vw;
+  overflow: hidden;
   position: fixed; 
   top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  min-width: 100vw;
-  min-height: 100vh;
   width: auto; 
-  height: auto;
-  overflow: hidden;
+  z-index: -1;
+  -ms-transform: translate(-50%, -50%); /* IE 9 */
+  -webkit-transform: translate(-50%, -50%); /* Safari */
+  transform: translate(-50%, -50%);
 }
 
 #overlay {
+  background-color: rgba(100, 0, 255, 0.7);
+  height: 100vh;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
-  height: 100vh;
   width: 100vw;
-  background-color: rgba(100, 0, 255, 0.7);
 }
 
 #title {
-  font-family: 'Quicksand', sans-serif;
   color: white;
-  font-weight: 100;
+  font-family: 'Quicksand', sans-serif;
   font-size: 100px;
+  font-weight: 100;
+  left: 50vw;
   position: absolute;
   top: 15vh;
-  left: 50vw;
-  color: white;
   -ms-transform: translate(-50%, -50%); /* IE 9 */
   -webkit-transform: translate(-50%, -50%); /* Safari */
   transform: translate(-50%, -50%);
 }
 
 #player {
-  z-index: 10;
+  left: 50vw;
   position: absolute;
   top: 35vh;
-  left: 50vw;
+  z-index: 10;
   -ms-transform: translate(-50%, -50%); /* IE 9 */
   -webkit-transform: translate(-50%, -50%); /* Safari */
   transform: translate(-50%, -50%);
 }
 
 #playlist {
-  font-family: 'Quicksand', sans-serif;
   color: white;
+  font-family: 'Quicksand', sans-serif;
   font-weight: 100;
+  left: 50vw;
   letter-spacing: 2px;
   line-height: 1.5em;
   position: absolute;
   top: 58vh;
-  left: 50vw;
   -ms-transform: translate(-50%, -50%); /* IE 9 */
   -webkit-transform: translate(-50%, -50%); /* Safari */
   transform: translate(-50%, -50%);
@@ -69,12 +61,12 @@ video {
 
 /*BUTTON DEFAULTS*/
 .icon {
-  width: 50px;
-  height: 50px;
   background-size: 50px 50px;
-  margin: 0 10px 0 10px;
   cursor: pointer;
   display: inline-block;
+  height: 50px;
+  margin: 0 10px 0 10px;
+  width: 50px;
 }
 
 .icon:hover {
@@ -132,4 +124,3 @@ video {
 #shuffle:hover, #shuffle:active {
   background-image: url(../images/player-green/shuffle.svg);
 }
-

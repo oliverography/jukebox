@@ -1,102 +1,48 @@
 // AUDIO ELEMENT VARIABLES
-
 var audioElement = document.getElementsByTagName("audio")[0]
 var videoElement = document.getElementsByTagName("video")[0]
 var playBtn = document.getElementById("play")
 var pauseBtn = document.getElementById("pause")
 var playlist = document.getElementById("playlist");
 
+// ============================================================
 // JUKEBOX CONSTRUCTOR
+// ============================================================
 
 function Jukebox() {
   this.songs = []
-  // this.shuffle = false
-  var i = 0
+  this.i = 0
+}
 
-  // Store 'this' in variable to pass to anon functions
-  var _this = this
+// ============================================================
+// JUKEBOX METHODS
+// ============================================================
 
-  this.setSong = function() {
-    // updates src in audio tag
-    audioElement.setAttribute("src", this.songs[i].url)
-  }
+Jukebox.prototype.initialize = function() {
+  // set current song in audio element and list songs in playlist div
+  this.setSong()
+  this.listSongs()
+}
 
-  // this.skipTo = function(trackNum) {
-  //   i = trackNum
-  //   // updates src in audio tag
-  //   this.setSong()
-  //   this.play()
-  // }
-
-  this.next = function() {
-    i++
-    // stops audio if at end of playlist
-    if (i == this.songs.length) {
-      i--
-      this.stop()
-    } else {
-      this.setSong()
-      this.play()
-    }
-  }
-
-  this.previous = function() {
-    i--
-    // stops audio if at start of playlist
-    if (i < 0) {
-      i++
-      this.stop()
-    } else {
-      this.setSong()
-      this.play()
-    }
-  }
-
-  this.shuffle = function() {
-    i = Math.floor( Math.random() * (this.songs.length - 1) )
-    // stops audio if at start of playlist
-      this.setSong()
-      this.play()
-  }
-
-  this.listSongs = function() {
-      for (var i = 0; i < this.songs.length; i++) { 
-        var trackNum = i + 1
-        if (trackNum.toString().length < 2) {
-          trackNum = "0" + trackNum.toString()
-        }
-        // Appends track to playlist div
-        playlist.innerHTML = playlist.innerHTML + "<p id='song-" + i + "'>" + trackNum + ". " + this.songs[i].artist + " - " + this.songs[i].title + "</p>"
-      }
-  }
-
-  window.onload = function() {
-    _this.setSong()
-    _this.listSongs()
-  }
-
+Jukebox.prototype.setSong = function() {
+  // updates src in audio element
+  audioElement.setAttribute("src", this.songs[this.i].url)
 }
 
 Jukebox.prototype.play = function() {
   audioElement.play()
   videoElement.play()
 
-  // hides play/show pause button
+  // swaps play/pause button
   playBtn.style.display = "none"
   pauseBtn.style.display = "inline-block"
-
-  // Auto advance to next song at end of song
-  audioElement.addEventListener("ended", function() {
-    _this.next()
-    console.log("Auto advance to next song")
-  })
 }
 
 Jukebox.prototype.pause = function() {
   audioElement.pause()
   videoElement.pause()
 
-  // hides pause/show play button
+  // swaps play/pause button
   pauseBtn.style.display = "none"
   playBtn.style.display = "inline-block"
 }
@@ -106,13 +52,64 @@ Jukebox.prototype.stop = function() {
   audioElement.currentTime = 0
 }
 
-Jukebox.prototype.add = function() {
+Jukebox.prototype.next = function() {
+  this.i++
+  // stops audio if at end of playlist
+  if (this.i == this.songs.length) {
+    this.i--
+    this.stop()
+  } else {
+    this.setSong()
+    this.play()
+  }
+}
+
+Jukebox.prototype.previous = function() {
+  this.i--
+  // stops audio if at start of playlist
+  if (this.i < 0) {
+    this.i++
+    this.stop()
+  } else {
+    this.setSong()
+    this.play()
+  }
+}
+
+Jukebox.prototype.shuffle = function() {
+  this.i = Math.floor( Math.random() * (this.songs.length - 1) )
+  // stops audio if at start of playlist
+    this.setSong()
+    this.play()
+}
+
+  // this.skipTo = function(trackNum) {
+  //   i = trackNum
+  //   // updates src in audio tag
+  //   this.setSong()
+  //   this.play()
+  // }
+
+Jukebox.prototype.loadSongs = function() {
     for (var i = 0; i < arguments.length; i++) { 
       this.songs.push(arguments[i])    
     }
 }
 
+Jukebox.prototype.listSongs = function() {
+    for (var i = 0; i < this.songs.length; i++) { 
+      var trackNum = i + 1
+      if (trackNum.toString().length < 2) {
+        trackNum = "0" + trackNum.toString()
+      }
+      // appends track to playlist div
+      playlist.innerHTML = playlist.innerHTML + "<p id='song-" + i + "'>" + trackNum + ". " + this.songs[i].artist + " - " + this.songs[i].title + "</p>"
+    }
+}
+
+// ============================================================
 // SONG CONSTRUCTOR
+// ============================================================
 
 function Song(artist, title, url) {
   this.artist = artist
@@ -120,11 +117,17 @@ function Song(artist, title, url) {
   this.url = url
 }
 
+// ============================================================
 // JUKEBOX OBJECT
+// ============================================================
 
 var jukebox = new Jukebox()
 
+// ============================================================
 // SONG OBJECTS
+// ============================================================
+
+var song1 = new Song("Pizzicato Five", "Overture", "audio/01 Overture.mp3")
 var bearbot1 = new Song("Bearbot", "Easily, Busily", "audio/Evocation/01 Easily, Busily.mp3")
 var bearbot2 = new Song("Bearbot", "Kick, Push, Drugs", "audio/Evocation/02 Kick, Push, Drugs.mp3")
 var bearbot3 = new Song("Bearbot", "Intergalactic Inc.", "audio/Evocation/03 Intergalactic Inc..mp3")
@@ -136,21 +139,15 @@ var bearbot8 = new Song("Bearbot", "Nts Nts Nts (Part I)", "audio/Evocation/08 N
 var bearbot9 = new Song("Bearbot", "Nts Nts Nts (Part 2)", "audio/Evocation/09 Nts Nts Nts (Part 2).mp3")
 var bearbot10 = new Song("Bearbot", "We Are the Creator", "audio/Evocation/10 We Are the Creator.mp3")
 
-// ADD SONGS TO JUKEBOX
-jukebox.add(bearbot1, bearbot2, bearbot3, bearbot4, bearbot5, bearbot6, bearbot7, bearbot8, bearbot9, bearbot10)
+// ============================================================
+// LOAD SONGS INTO JUKEBOX
+// ============================================================
 
+jukebox.loadSongs(song1, bearbot1, bearbot2, bearbot3, bearbot4, bearbot5, bearbot6, bearbot7, bearbot8, bearbot9, bearbot10)
 
-// BUTTONS CLICK EVENTS
-
-// document.getElementById("stop").addEventListener("click", function() {
-//   jukebox.stop()
-//   console.log("Stop button")
-// })
-
-document.getElementById("previous").addEventListener("click", function() {
-  jukebox.previous()
-  console.log("Previous button")
-})
+// ============================================================
+// EVENTS
+// ============================================================
 
 document.getElementById("play").addEventListener("click", function() {
   jukebox.play()
@@ -167,7 +164,23 @@ document.getElementById("next").addEventListener("click", function() {
   console.log("Next button")
 })
 
+document.getElementById("previous").addEventListener("click", function() {
+  jukebox.previous()
+  console.log("Previous button")
+})
+
 document.getElementById("shuffle").addEventListener("click", function() {
   jukebox.shuffle()
   console.log("Random button")
 })
+
+// auto advance to next song at end of song
+audioElement.addEventListener("ended", function() {
+  jukebox.next()
+  console.log("Auto advance to next song")
+})
+
+// initialize jukebox on page load
+window.onload = function() {
+  jukebox.initialize()
+}

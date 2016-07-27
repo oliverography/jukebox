@@ -2,7 +2,6 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Jukebox</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/stylesheet.css">
@@ -12,8 +11,11 @@
     <video loop>
       <source src="video/cassette_tape.mp4" type="video/mp4">
     </video>
+
     <audio></audio>
+
     <div id="overlay"></div>
+
     <div id="title">MIXTAPE</div>
 
     <div id="player">
@@ -23,9 +25,10 @@
       <div class="icon" id="next"></div>
       <div class="icon" id="shuffle"></div>
     </div>
-    <div id="playlist"></div>
-  </body>
 
+    <div id="playlist"></div>
+
+  </body>
   <!-- JS SCRIPTS -->
   <script src="js/jukebox.js"></script>
   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
