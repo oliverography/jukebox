@@ -24,7 +24,7 @@ function Jukebox() {
 // ============================================================
 
 Jukebox.prototype.initialize = function() {
-  // set first song in audio element and list songs in playlist div
+  // set first song in audio element and lists songs in playlist div
   this.setSong()
   this.listSongs()
 }
@@ -89,9 +89,8 @@ Jukebox.prototype.previous = function() {
 
 Jukebox.prototype.shuffle = function() {
   this.i = Math.floor(Math.random() * this.songs.length)
-  // stops audio if at start of playlist
-    this.setSong()
-    this.play()
+  this.setSong()
+  this.play()
 }
 
 Jukebox.prototype.skipTo = function(trackIdx) {
@@ -102,7 +101,7 @@ Jukebox.prototype.skipTo = function(trackIdx) {
 
 Jukebox.prototype.loadSongs = function() {
   for (var i = 0; i < arguments.length; i++) { 
-    this.songs.push(arguments[i])    
+    this.songs.push(arguments[i])
   }
 }
 
@@ -153,8 +152,8 @@ Jukebox.prototype.listSongs = function() {
 
 // background color changing
 Jukebox.prototype.colorChange = function() {
-  colors = ["rgba(128, 0, 255, 0.7)", "rgba(0, 128, 255, 0.7)", "rgba(128, 255, 0, 0.7)", "rgba(0, 255, 128, 0.7)", "rgba(255, 0, 128, 0.6)", "rgba(255, 128, 0, 0.6)"]
-  randomIdx = Math.floor(Math.random() * colors.length)
+  var colors = ["rgba(128, 0, 255, 0.7)", "rgba(0, 128, 255, 0.7)", "rgba(128, 255, 0, 0.7)", "rgba(0, 255, 128, 0.7)", "rgba(255, 0, 128, 0.6)", "rgba(255, 128, 0, 0.6)"]
+  var randomIdx = Math.floor(Math.random() * colors.length)
   bg.style.backgroundColor = colors[randomIdx]
 }
 
@@ -189,7 +188,7 @@ var bearbot8 = new Song("Bearbot", "Nts Nts Nts (Part I)", "audio/Evocation/08 N
 var bearbot9 = new Song("Bearbot", "Nts Nts Nts (Part 2)", "audio/Evocation/09 Nts Nts Nts (Part 2).mp3")
 var bearbot10 = new Song("Bearbot", "We Are the Creator", "audio/Evocation/10 We Are the Creator.mp3")
 
-// for testing
+// short song for testing
 var song1 = new Song("Pizzicato Five", "Overture", "audio/01 Overture.mp3")
 
 // ============================================================
